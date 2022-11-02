@@ -1,0 +1,5 @@
+package com.acmeflix.domain;
+
+public enum Genre {
+	ACTION, ADVENTURE, ANIMATION, COMEDY, DOCUMENTARY, DRAMA, HORROR, ROMANCE, SCIFI, THRILLER
+}
