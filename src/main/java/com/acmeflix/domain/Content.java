@@ -18,8 +18,8 @@ public class Content extends BaseModel {
 	private Integer releaseYear;
 	private ViewingRestriction viewingRestriction;
 	private Set<Genre> genres = new HashSet<>();
-	private Set<Language> audioLanguage = new HashSet<>();
-	private Set<Language> subtitleLanguage = new HashSet<>();
+	private Set<Language> audioLanguages = new HashSet<>();
+	private Set<Language> subtitleLanguages = new HashSet<>();
 	private Set<Content> recommendations = new HashSet<>();
 	private Set<Rating> ratings = new HashSet<>();
 	private Set<CastMember> castMembers = new HashSet<>();
