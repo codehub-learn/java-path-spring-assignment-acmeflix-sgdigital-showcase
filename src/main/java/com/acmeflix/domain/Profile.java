@@ -1,5 +1,6 @@
 package com.acmeflix.domain;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,8 +12,11 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -34,7 +38,9 @@ public class Profile extends BaseModel {
 	@Column(name = "viewing_restriction", nullable = false, length = 10)
 	private ViewingRestriction viewingRestriction;
 
-	//private Set<Rating> ratings = new HashSet<>();
+	@Builder.Default
+	@OneToMany(mappedBy = "profile")
+	private Set<Rating> ratings = new HashSet<>();
 
 	@ToString.Exclude
 	@ManyToOne(optional = false)
