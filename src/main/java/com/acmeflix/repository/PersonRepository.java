@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.QueryHints;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.QueryHint;
+import java.util.List;
 
 @Repository
 public interface PersonRepository extends JpaRepository<Person, Long> {
@@ -18,5 +19,5 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
 	@QueryHints(@QueryHint(name = org.hibernate.jpa.QueryHints.HINT_PASS_DISTINCT_THROUGH, value = "false"))
 	Person getFullContent(Long id);
 
-	Person findByLastNameAndFirstName(String lastName, String firstName);
+	List<Person> findByLastNameIgnoreCaseAndFirstNameIgnoreCase(String lastName, String firstName);
 }
