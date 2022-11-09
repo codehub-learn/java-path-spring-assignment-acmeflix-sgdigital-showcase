@@ -1,5 +1,8 @@
 package com.acmeflix.domain;
 
+import com.acmeflix.domain.enumeration.Genre;
+import com.acmeflix.domain.enumeration.Language;
+import com.acmeflix.domain.enumeration.ViewingRestriction;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

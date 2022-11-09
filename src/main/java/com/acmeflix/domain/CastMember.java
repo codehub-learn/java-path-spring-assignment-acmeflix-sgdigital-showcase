@@ -1,5 +1,6 @@
 package com.acmeflix.domain;
 
+import com.acmeflix.domain.enumeration.Role;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

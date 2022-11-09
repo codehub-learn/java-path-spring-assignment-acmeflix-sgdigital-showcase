@@ -1,5 +1,6 @@
-package com.acmeflix.domain;
+package com.acmeflix.domain.enumeration;
 
+import com.acmeflix.domain.SubscriptionPlan;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

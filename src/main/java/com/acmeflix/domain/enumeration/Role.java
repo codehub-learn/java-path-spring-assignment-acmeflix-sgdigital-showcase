@@ -1,4 +1,4 @@
-package com.acmeflix.domain;
+package com.acmeflix.domain.enumeration;
 
 public enum Role {
 	ACTOR, CREATOR, DIRECTOR, PRODUCER

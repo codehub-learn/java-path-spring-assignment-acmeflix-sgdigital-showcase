@@ -1,4 +1,4 @@
-package com.acmeflix.domain;
+package com.acmeflix.domain.enumeration;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
