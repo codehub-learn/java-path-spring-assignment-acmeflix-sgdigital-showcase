@@ -17,7 +17,7 @@ import java.io.Serializable;
 
 @Getter
 @Setter
-@ToString(callSuper = true)
+@ToString
 @SuperBuilder
 @NoArgsConstructor
 @Entity
@@ -26,11 +26,13 @@ public class Rating implements Serializable {
 	@EmbeddedId
 	private RatingKey id = new RatingKey();
 
+	@ToString.Exclude
 	@ManyToOne
 	@MapsId("profileId")
 	@JoinColumn(name = "profile_id")
 	private Profile profile;
 
+	@ToString.Exclude
 	@ManyToOne
 	@MapsId("contentId")
 	@JoinColumn(name = "content_id")
