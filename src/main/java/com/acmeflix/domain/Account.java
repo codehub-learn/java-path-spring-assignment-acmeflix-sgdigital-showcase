@@ -33,10 +33,12 @@ public class Account extends BaseModel {
 	@JoinColumn(name = "subscription_plan_id", nullable = false)
 	private SubscriptionPlan subscriptionPlan;
 
+	@ToString.Exclude
 	@Builder.Default
 	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
 	private Set<CreditCard> creditCards = new HashSet<>();
 
+	@ToString.Exclude
 	@Builder.Default
 	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
 	private Set<Profile> profiles = new HashSet<>();
