@@ -4,7 +4,7 @@ import com.acmeflix.domain.BaseModel;
 
 import java.util.List;
 
-public interface BaseService<T extends BaseModel, I> {
+public interface BaseService<T extends BaseModel, Ι> {
 	T create(final T item);
 
 	List<T> createAll(final T... items);
@@ -15,11 +15,13 @@ public interface BaseService<T extends BaseModel, I> {
 
 	void delete(T item);
 
-	void deleteById(I id);
+	void deleteById(Ι id);
 
 	boolean exists(T item);
 
-	T get(I id);
+	T get(Ι id);
 
 	List<T> findAll();
+
+	Long count();
 }

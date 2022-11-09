@@ -67,4 +67,9 @@ public abstract class BaseServiceImpl<T extends BaseModel> extends BaseComponent
 		logger.trace("Returned {} items.", itemsFound.size());
 		return itemsFound;
 	}
+
+	@Override
+	public Long count() {
+		return getRepository().count();
+	}
 }
