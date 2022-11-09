@@ -186,17 +186,18 @@ public class SampleContentCreator extends BaseComponent implements CommandLineRu
 
 		tvShowService.update(secondTvShowRetrieved);
 
-		personService.createAll(Person.builder().firstName("Tom").lastName("Cruise").build(),
-								Person.builder().firstName("Johnny").lastName("Depp").build());
 
-		var tomCruise = personService.findByLastNameAndFirstName("Cruise", "Tom");
-		var johnnyDepp = personService.findByLastNameAndFirstName("Depp", "Johnny");
+		personService.createAll(Person.builder().firstName("Cillian").lastName("Murphy").build(),
+								Person.builder().firstName("Paul").lastName("Anderson").build());
+
+		var cillianMurphy = personService.findByLastNameAndFirstName("MURPHY", "Cillian");
+		var paulAnderson = personService.findByLastNameAndFirstName("ANDERSON", "Paul");
 
 		castMemberService.create(CastMember.builder()
-										   .person(tomCruise)
+										   .person(cillianMurphy)
 										   .content(secondTvShowRetrieved).role(Role.ACTOR).build());
 		castMemberService.create(CastMember.builder()
-										   .person(johnnyDepp)
+										   .person(paulAnderson)
 										   .content(secondTvShowRetrieved)
 										   .role(Role.ACTOR)
 										   .build());
