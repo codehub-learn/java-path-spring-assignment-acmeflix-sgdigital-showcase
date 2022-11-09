@@ -1,5 +1,6 @@
 package com.acmeflix.domain;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,8 +9,11 @@ import lombok.experimental.SuperBuilder;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -25,4 +29,8 @@ public class Person extends BaseModel {
 
 	@Column(name = "last_name", length = 30)
 	private String lastName;
+
+	@Builder.Default
+	@OneToMany(mappedBy = "person")
+	private Set<CastMember> castMembers = new HashSet<>();
 }

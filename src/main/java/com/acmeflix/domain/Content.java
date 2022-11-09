@@ -82,8 +82,9 @@ public class Content extends BaseModel {
 	@OneToMany(mappedBy = "content")
 	private Set<Rating> ratings = new HashSet<>();
 
-	//	@Builder.Default
-	//	private Set<CastMember> castMembers = new HashSet<>();
+	@Builder.Default
+	@OneToMany(mappedBy = "content")
+	private Set<CastMember> castMembers = new HashSet<>();
 
 	//SubtitleContent
 }
