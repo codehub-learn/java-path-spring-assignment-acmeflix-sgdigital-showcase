@@ -27,13 +27,13 @@ public class Rating implements Serializable {
 	private RatingKey id = new RatingKey();
 
 	@ToString.Exclude
-	@ManyToOne
+	@ManyToOne(optional = false)
 	@MapsId("profileId")
 	@JoinColumn(name = "profile_id")
 	private Profile profile;
 
 	@ToString.Exclude
-	@ManyToOne
+	@ManyToOne(optional = false)
 	@MapsId("contentId")
 	@JoinColumn(name = "content_id")
 	private Content content;
