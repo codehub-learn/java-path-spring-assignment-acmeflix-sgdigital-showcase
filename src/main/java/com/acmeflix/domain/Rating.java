@@ -1,5 +1,6 @@
 package com.acmeflix.domain;
 
+import com.acmeflix.domain.composite.RatingKey;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
