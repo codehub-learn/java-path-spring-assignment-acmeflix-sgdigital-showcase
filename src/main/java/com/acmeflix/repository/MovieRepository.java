@@ -22,4 +22,11 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
 			where m.id = :id""")
 	@QueryHints(@QueryHint(name = org.hibernate.jpa.QueryHints.HINT_PASS_DISTINCT_THROUGH, value = "false"))
 	Movie getFullContent(Long id);
+
+	@Query("""
+			select distinct m
+			from Movie m
+			left join fetch m.ratings""")
+	@QueryHints(@QueryHint(name = org.hibernate.jpa.QueryHints.HINT_PASS_DISTINCT_THROUGH, value = "false"))
+	List<Movie> getRatings();
 }

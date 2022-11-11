@@ -24,4 +24,11 @@ public interface TvShowRepository extends JpaRepository<TvShow, Long> {
 			where tv.id = :id""")
 	@QueryHints(@QueryHint(name = org.hibernate.jpa.QueryHints.HINT_PASS_DISTINCT_THROUGH, value = "false"))
 	TvShow getFullContent(Long id);
+
+	@Query("""
+			select distinct tv
+			from TvShow tv
+			left join fetch tv.ratings""")
+	@QueryHints(@QueryHint(name = org.hibernate.jpa.QueryHints.HINT_PASS_DISTINCT_THROUGH, value = "false"))
+	List<TvShow> getRatings();
 }
