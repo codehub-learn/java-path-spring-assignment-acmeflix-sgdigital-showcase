@@ -5,9 +5,10 @@ import com.acmeflix.domain.Content;
 import com.acmeflix.domain.CreditCard;
 import com.acmeflix.domain.Profile;
 import com.acmeflix.domain.Rating;
-import com.acmeflix.domain.RatingKey;
+import com.acmeflix.domain.composite.RatingKey;
 import com.acmeflix.exception.ViewingRestrictionException;
 import com.acmeflix.repository.AccountRepository;
+import com.acmeflix.repository.RatingRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,7 @@ import java.util.Arrays;
 @RequiredArgsConstructor
 public class AccountServiceImpl extends BaseServiceImpl<Account> implements AccountService {
 	private final AccountRepository accountRepository;
+	private final RatingRepository ratingRepository;
 
 	@Override
 	public JpaRepository<Account, Long> getRepository() {
@@ -47,16 +49,17 @@ public class AccountServiceImpl extends BaseServiceImpl<Account> implements Acco
 	public void rate(final Profile profile, final Content content, final Double rate)
 			throws ViewingRestrictionException {
 		if (content.getViewingRestriction().getAge() > profile.getViewingRestriction().getAge()) {
-			throw new ViewingRestrictionException(
-					"According to your profile settings, you are not allowed to rate this content.");
+			throw new ViewingRestrictionException(String.format(
+					"According to your profile settings (%d years), you are not allowed to rate this content (%d " +
+							"years).", profile.getViewingRestriction().getAge(),
+					content.getViewingRestriction().getAge()));
 		}
 
-		var rating = Rating.builder().id(new RatingKey(profile.getId(), content.getId())).rate(rate).build();
-		profile.getRatings().add(rating);
-		content.getRatings().add(rating);
-		update(profile.getAccount());
+		//var rating = Rating.builder().id(new RatingKey(profile.getId(), content.getId())).rate(rate).build();
+		var rating = Rating.builder().id(new RatingKey(profile.getId(), content.getId())).profile(profile).content(
+				content).rate(rate).build();
+		ratingRepository.save(rating);
 
-		logger.debug("Profile '{}' rated '{}' with {}.", profile.getName(), content.getTitle(), rate);
-		logger.trace("Profile '{}' total ratings {}.", profile.getName(), profile.getRatings());
+		logger.trace("Profile '{}' rated '{}' with {}.", profile.getName(), content.getTitle(), rate);
 	}
 }
