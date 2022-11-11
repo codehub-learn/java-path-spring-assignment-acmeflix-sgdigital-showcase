@@ -9,6 +9,7 @@ import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.NoSuchElementException;
 import java.util.Set;
 
 @Getter
@@ -42,4 +43,12 @@ public class Account extends BaseModel {
 	@Builder.Default
 	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
 	private Set<Profile> profiles = new HashSet<>();
+
+	public Profile getProfile(String name) {
+		if (profiles.size() > 0) {
+			return profiles.stream().filter(profile -> name.equalsIgnoreCase(profile.getName())).findFirst()
+						   .orElseThrow();
+		}
+		throw new NoSuchElementException("There are no profiles available!");
+	}
 }
