@@ -27,4 +27,9 @@ public class MovieServiceImpl extends BaseServiceImpl<Movie> implements MovieSer
 	public Movie getFullContent(final Long id) {
 		return movieRepository.getFullContent(id);
 	}
+
+	@Override
+	public List<Movie> getRatings() {
+		return movieRepository.getRatings();
+	}
 }

@@ -51,4 +51,9 @@ public class TvShowServiceImpl extends BaseServiceImpl<TvShow> implements TvShow
 	public TvShow getFullContent(final Long id) {
 		return tvShowRepository.getFullContent(id);
 	}
+
+	@Override
+	public List<TvShow> getRatings() {
+		return tvShowRepository.getRatings();
+	}
 }

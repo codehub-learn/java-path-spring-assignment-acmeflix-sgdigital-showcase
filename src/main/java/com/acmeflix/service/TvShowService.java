@@ -16,4 +16,6 @@ public interface TvShowService extends BaseService<TvShow, Long> {
 	Season getSeason(final TvShow tvShow, Integer ordering);
 
 	TvShow getFullContent(Long id);
+
+	List<TvShow> getRatings();
 }
