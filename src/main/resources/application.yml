@@ -62,4 +62,4 @@ spring:
             mode: never
             platform: h2
     main:
-        web-application-type: none
+        web-application-type: servlet

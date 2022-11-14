@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class PersonServiceImpl extends BaseServiceImpl<Person> implements PersonService {
@@ -14,6 +16,16 @@ public class PersonServiceImpl extends BaseServiceImpl<Person> implements Person
 	@Override
 	public JpaRepository<Person, Long> getRepository() {
 		return personRepository;
+	}
+
+	@Override
+	public List<Person> findAll() {
+		return getFullContent();
+	}
+
+	@Override
+	public List<Person> getFullContent() {
+		return personRepository.getFullContent();
 	}
 
 	@Override

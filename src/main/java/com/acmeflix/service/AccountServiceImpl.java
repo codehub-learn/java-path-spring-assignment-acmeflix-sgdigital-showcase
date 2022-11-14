@@ -14,6 +14,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -41,6 +42,16 @@ public class AccountServiceImpl extends BaseServiceImpl<Account> implements Acco
 	}
 
 	@Override
+	public List<Account> findAll() {
+		return getFullContent();
+	}
+
+	@Override
+	public List<Account> getFullContent() {
+		return accountRepository.getFullContent();
+	}
+
+	@Override
 	public Account getFullContent(final Long id) {
 		return accountRepository.getFullContent(id);
 	}
@@ -60,6 +71,6 @@ public class AccountServiceImpl extends BaseServiceImpl<Account> implements Acco
 				content).rate(rate).build();
 		ratingRepository.save(rating);
 
-		logger.trace("Profile '{}' rated '{}' with {}.", profile.getName(), content.getTitle(), rate);
+		logger.debug("Profile '{}' rated '{}' with {}.", profile.getName(), content.getTitle(), rate);
 	}
 }

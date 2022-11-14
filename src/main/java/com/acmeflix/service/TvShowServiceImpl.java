@@ -48,6 +48,16 @@ public class TvShowServiceImpl extends BaseServiceImpl<TvShow> implements TvShow
 	}
 
 	@Override
+	public List<TvShow> findAll() {
+		return getFullContent();
+	}
+
+	@Override
+	public List<TvShow> getFullContent() {
+		return tvShowRepository.getFullContent();
+	}
+
+	@Override
 	public TvShow getFullContent(final Long id) {
 		return tvShowRepository.getFullContent(id);
 	}
