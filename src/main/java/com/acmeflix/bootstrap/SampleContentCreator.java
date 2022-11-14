@@ -46,7 +46,7 @@ public class SampleContentCreator extends BaseComponent implements CommandLineRu
 
 		//@formatter:off
 		var firstAccount = Account.builder()
-								  .email("c.giannacoulis@codehub.g")
+								  .email("c.giannacoulis@codehub.gr")
 								  .password("test123")
 								  .subscriptionPlan(subscriptionPlanService.getByTitle("STANDARD")).build();
 
@@ -67,6 +67,12 @@ public class SampleContentCreator extends BaseComponent implements CommandLineRu
 																   .name("adult2")
 																   .language(Language.ENGLISH)
 																   .viewingRestriction(ViewingRestriction.EIGHTEEN)
+																   .account(firstAccount)
+																   .build(),
+										com.acmeflix.domain.Profile.builder()
+																   .name("kiddo")
+																   .language(Language.ENGLISH)
+																   .viewingRestriction(ViewingRestriction.SEVEN)
 																   .account(firstAccount)
 																   .build()));
 
@@ -219,23 +225,21 @@ public class SampleContentCreator extends BaseComponent implements CommandLineRu
 
 		logger.info("Submitting ratings.");
 		var retrievedFirstAccount = accountService.getFullContent(1L);
-		accountService.rate(retrievedFirstAccount.getProfile("me"), movieService.getFullContent(1L), 4.5d);
-		accountService.rate(retrievedFirstAccount.getProfile("me"), movieService.getFullContent(2L), 4d);
+		accountService.rate(retrievedFirstAccount.getProfile("adult1"), movieService.getFullContent(1L), 4.5d);
+		accountService.rate(retrievedFirstAccount.getProfile("adult1"), movieService.getFullContent(2L), 4d);
 
 		// Enable the following line to check whether validation works
 		// accountService.rate(retrievedFirstAccount.getProfile("kiddo"), movieService.get(2L), 4d);
-		accountService.rate(retrievedFirstAccount.getProfile("me"), tvShowService.get(3L), 5d);
-		accountService.rate(retrievedFirstAccount.getProfile("me"), tvShowService.get(4L), 5d);
-
-		var retrievedSecondAccount = accountService.getFullContent(2L);
-		accountService.rate(retrievedSecondAccount.getProfile("adult1"), movieService.get(1L), 4.5d);
-		accountService.rate(retrievedSecondAccount.getProfile("adult1"), movieService.get(2L), 4d);
-		accountService.rate(retrievedSecondAccount.getProfile("adult1"), tvShowService.get(3L), 5d);
-		accountService.rate(retrievedSecondAccount.getProfile("adult1"), tvShowService.get(4L), 4.5d);
-		accountService.rate(retrievedSecondAccount.getProfile("adult2"), movieService.get(1L), 4d);
-		accountService.rate(retrievedSecondAccount.getProfile("adult2"), movieService.get(2L), 4d);
-		accountService.rate(retrievedSecondAccount.getProfile("adult2"), tvShowService.get(3L), 4.5d);
-		accountService.rate(retrievedSecondAccount.getProfile("adult2"), tvShowService.get(4L), 4.5d);
+		accountService.rate(retrievedFirstAccount.getProfile("adult1"), tvShowService.get(3L), 5d);
+		accountService.rate(retrievedFirstAccount.getProfile("adult1"), tvShowService.get(4L), 5d);
+		accountService.rate(retrievedFirstAccount.getProfile("adult1"), movieService.get(1L), 4.5d);
+		accountService.rate(retrievedFirstAccount.getProfile("adult1"), movieService.get(2L), 4d);
+		accountService.rate(retrievedFirstAccount.getProfile("adult1"), tvShowService.get(3L), 5d);
+		accountService.rate(retrievedFirstAccount.getProfile("adult1"), tvShowService.get(4L), 4.5d);
+		accountService.rate(retrievedFirstAccount.getProfile("adult2"), movieService.get(1L), 4d);
+		accountService.rate(retrievedFirstAccount.getProfile("adult2"), movieService.get(2L), 4d);
+		accountService.rate(retrievedFirstAccount.getProfile("adult2"), tvShowService.get(3L), 4.5d);
+		accountService.rate(retrievedFirstAccount.getProfile("adult2"), tvShowService.get(4L), 4.5d);
 
 		logger.info("Retrieving ratings.");
 		movieService.getRatings().forEach(movie -> {
